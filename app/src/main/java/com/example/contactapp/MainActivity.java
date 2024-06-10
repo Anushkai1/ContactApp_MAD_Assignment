@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SelectListenr {
+    RecyclerView recyclerView;
     Contact[] contacts = {
             new Contact("Nimal Perera", "011-2345678", "nimal12345@co.lk", "123 Galle Rd, Colombo"),
             new Contact("Kamal Silva", "011-3456789", "kamal23456@co.lk", "456 Kandy Rd, Kandy"),
@@ -32,6 +35,17 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        //Recycle view
+        ContactAdapter contactAdapter = new ContactAdapter(this, contacts, this);
+        recyclerView = findViewById(R.id.recyclerview);
+        recyclerView.setAdapter(contactAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public void onItemCLicked(int Position) {
+
     }
 
     public class Contact {
