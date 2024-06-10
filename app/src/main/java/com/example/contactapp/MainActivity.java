@@ -1,5 +1,6 @@
 package com.example.contactapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -45,7 +46,12 @@ public class MainActivity extends AppCompatActivity implements SelectListenr {
 
     @Override
     public void onItemCLicked(int Position) {
-
+        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+        intent.putExtra("name", contacts[Position].name);
+        intent.putExtra("phone", contacts[Position].phone);
+        intent.putExtra("email", contacts[Position].email);
+        intent.putExtra("address", contacts[Position].address);
+        startActivity(intent);
     }
 
     public class Contact {
